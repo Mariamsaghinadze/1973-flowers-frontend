@@ -1,5 +1,6 @@
 import { apiClient } from "@/lib/apiClient/server";
 import styles from "./page.module.css";
+import IntroSection from "@/components/IntroSection/IntroSection";
 
 export default async function Home() {
   // const [{ data: serviceBundles }, { data: services }, { data: partners }] =
@@ -33,7 +34,7 @@ export default async function Home() {
 
   return (
     <div className={styles.mainDiv}>
-      {/* <IntroSection /> */}
+      <IntroSection />
       <div className={styles.mainPageDiv}>
         <div>{/* <ServicesSection /> */}</div>
 

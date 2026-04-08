@@ -1,0 +1,71 @@
+.trigger {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  height: 40px;
+  padding: 0 12px;
+  border: 1px solid var(--red);
+  border-radius: 4px;
+  background: var(--creamy);
+  color: var(--red);
+  transition:
+    background 0.2s ease,
+    border-color 0.2s ease;
+}
+
+.trigger:hover {
+  background: var(--creamy);
+  border-color: var(--red);
+}
+
+.languageText {
+  color: var(--red);
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1;
+}
+
+.chevron {
+  font-size: 10px;
+  color: var(--red);
+}
+
+.content {
+  min-width: 120px;
+  padding: 4px;
+  border-radius: 4px;
+  border: 1px solid var(--red);
+  background: var(--creamy);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
+}
+
+.item {
+  border-radius: 2px;
+  padding: 10px 12px;
+  cursor: pointer;
+  color: var(--red);
+}
+
+.item {
+  border-radius: 2px;
+  padding: 10px 12px;
+  cursor: pointer;
+  color: var(--red);
+  outline: none;
+}
+
+.item:focus,
+.item:focus-visible {
+  outline: none;
+  box-shadow: none;
+}
+
+.itemInner {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.item:hover {
+  background: rgba(181, 35, 35, 0.05);
+}

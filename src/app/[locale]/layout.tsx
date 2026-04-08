@@ -5,6 +5,7 @@ import "./globals.css";
 import styles from "./layout.module.css";
 import Providers from "./providers";
 import { NextIntlClientProvider } from "next-intl";
+import Header from "@/components/Header/Header";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -38,17 +39,6 @@ export default async function RootLayout({
         <link rel="icon" type="image/svg+xml" href="/favicon.ico" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" />
-        <link
-          href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
-          rel="stylesheet"
-        ></link>
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" />
-        <link
-          href="https://fonts.googleapis.com/css2?family=Fredoka:wght@300..700&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap"
-          rel="stylesheet"
-        />
-
         <meta property="og:title" content="1973 Flowers" />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://1973flowers.ge" />
@@ -63,7 +53,7 @@ export default async function RootLayout({
         <Providers>
           <NextIntlClientProvider locale={locale}>
             <div className={styles.mainDiv}>
-              {/* <Header /> */}
+              <Header />
               {children}
               {/* <FooterSection /> */}
             </div>

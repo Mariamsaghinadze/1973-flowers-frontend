@@ -1,0 +1,18 @@
+.section {
+  width: 100vw;
+  background-color: var(--red);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.logo {
+  width: 80vw;
+}
+
+@media (max-width: 1200px) {
+  .logo {
+    width: 100vw;
+    transform: scale(1.2);
+  }
+}

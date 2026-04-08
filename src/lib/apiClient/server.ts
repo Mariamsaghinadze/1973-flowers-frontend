@@ -1,6 +1,6 @@
 import { Api, ApiConfig } from "./generated/client";
 
-const BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL ?? "https://api.slr.ge";
+const BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL;
 console.log(`BASE_URL=${BASE_URL}`);
 
 // Shared util between client/server

@@ -3,14 +3,8 @@
 @tailwind utilities;
 
 @font-face {
-  font-family: "Helvetica Bold";
-  src: url("../../../public/fonts/Helvetica\ W01\ Bold.ttf") format("truetype");
-}
-
-@font-face {
-  font-family: "Helvetica Light";
-  src: url("../../../public/fonts/HelveticaNowTextW01-Light.ttf")
-    format("truetype");
+  font-family: "MainFont";
+  src: url("../../../public/fonts/BebasNeue-Regular.ttf") format("truetype");
 }
 
 @font-face {
@@ -21,9 +15,8 @@
 :root {
   --black: #353535;
   --yellow: #e0b648;
-  --red: #ff4f01;
-  --green: hsl(86, 40%, 35%);
-  --creamy: hsl(44, 100%, 97%);
+  --red: #a91f26;
+  --creamy: white;
 }
 
 * {
