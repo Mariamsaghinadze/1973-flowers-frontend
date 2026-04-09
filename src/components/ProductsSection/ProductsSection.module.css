@@ -28,7 +28,7 @@
 .subtitle {
   margin: 0;
   color: rgba(90, 106, 46, 0.8);
-  font-family: "Nunito", sans-serif;
+  font-family: "MainFont", sans-serif;
   font-size: 16px;
   line-height: 1.4;
   max-width: 520px;
@@ -141,7 +141,7 @@
 
 .cardDescription {
   color: rgba(90, 106, 46, 0.85);
-  font-family: "Nunito", sans-serif;
+  font-family: "MainFont", sans-serif;
   font-size: 15px;
   line-height: 1.5;
 }
@@ -163,8 +163,56 @@
 }
 
 .emptyState {
+  align-items: flex-start !important;
   padding: 48px 0 32px;
   text-align: left;
+  font-family: "MainFont", sans-serif !important;
+  font-size: 25px !important;
+  line-height: 1.4;
+  color: rgba(90, 106, 46, 0.7);
+}
+
+.toolbar {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.searchWrap {
+  width: 100%;
+}
+
+.searchInput {
+  width: 100%;
+  height: 52px;
+  padding: 0 18px;
+  border: 1px solid rgba(90, 106, 46, 0.16);
+  outline: none;
+  background-color: transparent;
+  color: var(--green);
+  font-family: "Nunito", sans-serif;
+  font-size: 16px;
+  line-height: 1.4;
+  transition:
+    border-color 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+.searchInput::placeholder {
+  color: rgba(90, 106, 46, 0.5);
+}
+
+.searchInput:focus {
+  border-color: rgba(186, 59, 47, 0.45);
+  box-shadow: 0 0 0 3px rgba(186, 59, 47, 0.08);
+}
+
+.emptyState {
+  min-height: 800px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+
   font-family: "Nunito", sans-serif;
   font-size: 16px;
   line-height: 1.4;
@@ -238,6 +286,16 @@
 
   .emptyState {
     padding: 36px 0 24px;
+    font-size: 14px;
+  }
+
+  .toolbar {
+    gap: 14px;
+  }
+
+  .searchInput {
+    height: 46px;
+    padding: 0 14px;
     font-size: 14px;
   }
 }

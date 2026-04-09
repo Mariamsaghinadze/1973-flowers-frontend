@@ -24,8 +24,8 @@ export default function Header() {
         <div className={styles.MiddleContainer}>
           <nav className={styles.Nav}>
             <Link
-              className={`${styles.NavLink} ${pathname === "/" ? styles.active : ""}`}
-              href="/"
+              className={`${styles.NavLink} ${pathname === "/#products" ? styles.active : ""}`}
+              href="#products"
             >
               {t("Bouquets")}
             </Link>
