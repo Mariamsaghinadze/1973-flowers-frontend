@@ -36,7 +36,7 @@ export default function LanguageSelector() {
   const href = `${pathname}${qs ? `?${qs}` : ""}`;
 
   return (
-    <DropdownMenu>
+    <DropdownMenu modal={false}>
       <DropdownMenuTrigger asChild>
         <Button variant="ghost" className={styles.trigger}>
           <Image src={language} alt="language" width={16} height={16} />

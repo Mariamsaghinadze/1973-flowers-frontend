@@ -1,13 +1,11 @@
 {
-  "Header": {
-    "Bouquets": "Bouquets",
-    "Contact": "Contact"
-  },
+  "Header": { "Home": "Home", "Bouquets": "Bouquets", "Contact": "Contact" },
   "ProductSection": {
     "title": "Exquisite Floral Arrangements for Every Occasion",
     "subtitle": "Discover our exquisite collection of bouquets, crafted with love and care. ",
     "all": "All",
     "searchPlaceholder": "Search products...",
-    "empty": "No products found."
+    "empty": "No products found.",
+    "addToCart": "Add to Cart"
   }
 }

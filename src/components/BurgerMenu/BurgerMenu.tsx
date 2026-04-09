@@ -59,26 +59,10 @@ export default function BurgerMenu({ className }: { className?: string }) {
 
             <Link
               onClick={() => setOpen(false)}
-              className={`${styles.NavLink} ${pathname === "/services" ? styles.active : ""}`}
-              href="/services"
+              className={`${styles.NavLink} ${pathname === "/#products" ? styles.active : ""}`}
+              href="/#products"
             >
-              {t("Services")}
-            </Link>
-
-            <Link
-              onClick={() => setOpen(false)}
-              className={`${styles.NavLink} ${pathname === "/bundles" ? styles.active : ""}`}
-              href="/bundles"
-            >
-              {t("Bundles")}
-            </Link>
-
-            <Link
-              onClick={() => setOpen(false)}
-              className={styles.NavLink}
-              href="/#intro"
-            >
-              {t("About")}
+              {t("Bouquets")}
             </Link>
 
             <Link
@@ -87,14 +71,6 @@ export default function BurgerMenu({ className }: { className?: string }) {
               href="/#contactUs"
             >
               {t("Contact")}
-            </Link>
-
-            <Link
-              onClick={() => setOpen(false)}
-              className={`${styles.NavLink} ${pathname === "/donation" ? styles.active : ""}`}
-              href="/donation"
-            >
-              {t("Donation")}
             </Link>
           </nav>
         </SheetContent>

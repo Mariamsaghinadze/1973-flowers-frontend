@@ -25,7 +25,7 @@ export default function Header() {
           <nav className={styles.Nav}>
             <Link
               className={`${styles.NavLink} ${pathname === "/#products" ? styles.active : ""}`}
-              href="#products"
+              href="/#products"
             >
               {t("Bouquets")}
             </Link>
@@ -39,7 +39,7 @@ export default function Header() {
         </div>
         <div className={styles.RightContainer}>
           <LanguageSelector />
-          {/* <BurgerMenu className={styles.burgerMenu} /> */}
+          <BurgerMenu className={styles.burgerMenu} />
         </div>
       </div>
     </>

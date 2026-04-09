@@ -1,5 +1,6 @@
 "use client";
 
+import { CartProvider } from "@/context/CartContext";
 import { ChakraProvider } from "@chakra-ui/react";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ReactNode, useState } from "react";
@@ -9,7 +10,9 @@ export default function Providers({ children }: { children: ReactNode }) {
 
   return (
     <QueryClientProvider client={queryClient}>
-      <ChakraProvider>{children}</ChakraProvider>
+      <ChakraProvider>
+        <CartProvider>{children}</CartProvider>
+      </ChakraProvider>
     </QueryClientProvider>
   );
 }

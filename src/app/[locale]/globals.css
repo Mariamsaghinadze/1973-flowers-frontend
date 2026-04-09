@@ -37,8 +37,8 @@ html {
 
 @layer base {
   :root {
-    --background: hsl(44, 100%, 97%);
-    --foreground: hsl(86, 40%, 35%);
+    --background: white;
+    --foreground: var(--red);
 
     --card: hsl(0, 0%, 100%);
     --card-foreground: hsl(0, 0%, 3.9%);

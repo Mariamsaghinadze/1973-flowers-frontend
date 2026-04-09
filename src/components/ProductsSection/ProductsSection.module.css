@@ -18,20 +18,55 @@
 }
 
 .title {
+  margin: 0;
   font-family: "MainFont";
   font-size: 42px;
   line-height: 1;
   color: var(--red);
-  margin: 0;
 }
 
 .subtitle {
   margin: 0;
+  max-width: 520px;
   color: rgba(90, 106, 46, 0.8);
   font-family: "MainFont", sans-serif;
   font-size: 16px;
   line-height: 1.4;
-  max-width: 520px;
+}
+
+.toolbar {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.searchWrap {
+  width: 100%;
+}
+
+.searchInput {
+  width: 100%;
+  height: 52px;
+  padding: 0 18px;
+  border: 1px solid rgba(90, 106, 46, 0.16);
+  outline: none;
+  background-color: transparent;
+  color: var(--green);
+  font-family: "Nunito", sans-serif;
+  font-size: 16px;
+  line-height: 1.4;
+  transition:
+    border-color 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+.searchInput::placeholder {
+  color: rgba(90, 106, 46, 0.5);
+}
+
+.searchInput:focus {
+  border-color: rgba(186, 59, 47, 0.45);
+  box-shadow: 0 0 0 3px rgba(186, 59, 47, 0.08);
 }
 
 .filtersWrap {
@@ -50,10 +85,10 @@
 }
 
 .filterButton {
+  position: relative;
   border: none;
   background: transparent;
   padding: 0;
-  position: relative;
   cursor: pointer;
   font-family: "MainFont";
   font-size: 24px;
@@ -116,12 +151,138 @@
 
 .cardImage {
   object-fit: cover;
+  transition: transform 0.35s ease;
+}
+
+.mobilePhotoAddToCartButton {
+  display: none;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .card:hover .cardImage {
+    transform: scale(1.03);
+  }
 }
 
 .imagePlaceholder {
   width: 100%;
   height: 100%;
   background: rgba(90, 106, 46, 0.08);
+}
+
+.imageOverlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  padding: 18px;
+  background: linear-gradient(
+    to top,
+    rgba(0, 0, 0, 0.62) 0%,
+    rgba(0, 0, 0, 0.34) 40%,
+    rgba(0, 0, 0, 0.12) 70%,
+    rgba(0, 0, 0, 0.02) 100%
+  );
+  opacity: 0;
+  visibility: hidden;
+  transition:
+    opacity 0.3s ease,
+    visibility 0.3s ease;
+}
+
+.overlayControlShell {
+  width: 100%;
+  min-height: 56px;
+  display: flex;
+  align-items: stretch;
+  justify-content: center;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .card:hover .imageOverlay {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  .card:hover .addToCartButton {
+    transform: translateY(0);
+  }
+}
+
+.imageOverlayVisible {
+  opacity: 1;
+  visibility: visible;
+}
+
+.addToCartButton {
+  width: 100%;
+  min-height: 56px;
+  border: none;
+  cursor: pointer;
+  padding: 14px 18px;
+  background-color: var(--red);
+  color: var(--creamy);
+  font-family: "MainFont";
+  font-size: 22px;
+  line-height: 1;
+  transform: translateY(100%);
+  transition:
+    transform 0.35s ease,
+    opacity 0.3s ease;
+}
+
+.addToCartButton:hover {
+  opacity: 0.94;
+}
+
+.imageOverlayVisible .addToCartButton {
+  transform: translateY(0);
+}
+
+.quantityControl {
+  width: 100%;
+  min-height: 56px;
+  display: flex;
+  align-items: stretch;
+  justify-content: space-between;
+  gap: 0;
+  background-color: rgba(245, 238, 222, 0.96);
+  backdrop-filter: blur(8px);
+}
+
+.quantityButton {
+  width: 56px;
+  min-width: 56px;
+  height: 56px;
+  border: none;
+  background-color: var(--red);
+  color: var(--creamy);
+  cursor: pointer;
+  font-family: "MainFont";
+  font-size: 28px;
+  line-height: 1;
+  transition:
+    opacity 0.2s ease,
+    transform 0.2s ease;
+}
+
+.quantityButton:hover {
+  opacity: 0.95;
+  transform: scale(1.03);
+}
+
+.quantityValue {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--red);
+  background: var(--red);
+  color: var(--creamy);
+  font-family: "MainFont";
+  font-size: 24px;
+  line-height: 1;
 }
 
 .cardBody {
@@ -162,49 +323,29 @@
   color: var(--green);
 }
 
-.emptyState {
-  align-items: flex-start !important;
-  padding: 48px 0 32px;
-  text-align: left;
-  font-family: "MainFont", sans-serif !important;
-  font-size: 25px !important;
-  line-height: 1.4;
-  color: rgba(90, 106, 46, 0.7);
-}
-
-.toolbar {
-  display: flex;
-  flex-direction: column;
-  gap: 18px;
-}
-
-.searchWrap {
-  width: 100%;
-}
-
-.searchInput {
-  width: 100%;
+.mobileQuantityButton {
+  width: 52px;
+  min-width: 52px;
   height: 52px;
-  padding: 0 18px;
-  border: 1px solid rgba(90, 106, 46, 0.16);
-  outline: none;
-  background-color: transparent;
-  color: var(--green);
-  font-family: "Nunito", sans-serif;
-  font-size: 16px;
-  line-height: 1.4;
-  transition:
-    border-color 0.3s ease,
-    box-shadow 0.3s ease;
+  border: none;
+  background-color: var(--red);
+  color: var(--creamy);
+  font-family: "MainFont";
+  font-size: 24px;
+  line-height: 1;
+  cursor: pointer;
 }
 
-.searchInput::placeholder {
-  color: rgba(90, 106, 46, 0.5);
-}
-
-.searchInput:focus {
-  border-color: rgba(186, 59, 47, 0.45);
-  box-shadow: 0 0 0 3px rgba(186, 59, 47, 0.08);
+.mobileQuantityValue {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: "MainFont";
+  font-size: 20px;
+  color: var(--red);
+  line-height: 1;
+  background: rgba(245, 238, 222, 0.96);
 }
 
 .emptyState {
@@ -212,7 +353,8 @@
   display: flex;
   align-items: center;
   justify-content: flex-start;
-
+  padding: 48px 0 32px;
+  text-align: left;
   font-family: "Nunito", sans-serif;
   font-size: 16px;
   line-height: 1.4;
@@ -246,6 +388,16 @@
   .subtitle {
     font-size: 14px;
     max-width: 100%;
+  }
+
+  .toolbar {
+    gap: 14px;
+  }
+
+  .searchInput {
+    height: 46px;
+    padding: 0 14px;
+    font-size: 14px;
   }
 
   .filtersWrap {
@@ -289,13 +441,61 @@
     font-size: 14px;
   }
 
-  .toolbar {
-    gap: 14px;
+  .imageOverlay {
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    padding: 12px;
+    background: linear-gradient(
+      to top,
+      rgba(0, 0, 0, 0.42) 0%,
+      rgba(0, 0, 0, 0.16) 45%,
+      rgba(0, 0, 0, 0.02) 100%
+    );
+    opacity: 1;
+    visibility: visible;
   }
 
-  .searchInput {
-    height: 46px;
-    padding: 0 14px;
-    font-size: 14px;
+  .overlayControlShell {
+    min-height: 52px;
+  }
+
+  .addToCartButton {
+    display: none;
+  }
+
+  .mobilePhotoAddToCartButton {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    min-height: 52px;
+    border: none;
+    cursor: pointer;
+    padding: 12px 14px;
+    background-color: var(--red);
+    color: var(--creamy);
+    font-family: "MainFont";
+    font-size: 18px;
+    line-height: 1;
+  }
+
+  .quantityControl {
+    min-height: 52px;
+  }
+
+  .quantityButton {
+    width: 52px;
+    min-width: 52px;
+    height: 52px;
+    font-size: 24px;
+  }
+
+  .quantityValue {
+    font-size: 22px;
+  }
+
+  .mobileCartControl {
+    display: none;
   }
 }
