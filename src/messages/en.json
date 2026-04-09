@@ -2,5 +2,10 @@
   "Header": {
     "Bouquets": "Bouquets",
     "Contact": "Contact"
+  },
+  "ProductSection": {
+    "title": "Exquisite Floral Arrangements for Every Occasion",
+    "subtitle": "Discover our exquisite collection of bouquets, crafted with love and care. ",
+    "all": "All"
   }
 }

@@ -1,8 +1,15 @@
 import { apiClient } from "@/lib/apiClient/server";
 import styles from "./page.module.css";
 import IntroSection from "@/components/IntroSection/IntroSection";
+import ProductsSection from "@/components/ProductsSection/ProductsSection";
 
 export default async function Home() {
+  const [{ data: categories }, { data: products }] = await Promise.all([
+    apiClient.productCategory.getProductCategories(),
+    apiClient.product.getProducts(),
+  ]);
+
+  const activeProducts = (products ?? []).filter((product) => product.active);
   // const [{ data: serviceBundles }, { data: services }, { data: partners }] =
   //   await Promise.all([
   //     apiClient.serviceBundle.getServiceBundles(),
@@ -36,7 +43,9 @@ export default async function Home() {
     <div className={styles.mainDiv}>
       <IntroSection />
       <div className={styles.mainPageDiv}>
-        <div>{/* <ServicesSection /> */}</div>
+        <div>
+          <ProductsSection categories={categories} products={activeProducts} />
+        </div>
 
         <div>
           {/* {specialOffer && (

@@ -39,7 +39,7 @@ export default function Header() {
         </div>
         <div className={styles.RightContainer}>
           <LanguageSelector />
-          <BurgerMenu className={styles.burgerMenu} />
+          {/* <BurgerMenu className={styles.burgerMenu} /> */}
         </div>
       </div>
     </>

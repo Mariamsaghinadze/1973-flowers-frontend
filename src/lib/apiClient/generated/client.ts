@@ -10,27 +10,91 @@
  * ---------------------------------------------------------------
  */
 
-export type ProductsDto = ProductDto[];
+export type ProductCategoriesDto = ProductCategoryDto[];
 
-export interface ProductDto {
+export interface ProductCategoryDto {
+  /** @minLength 1 */
   id: string;
-  name: string;
-  color: string;
-  /** @format date-time */
-  lastUpdatedAt: string;
+  name: LocalizedValue;
+  shortDescription?: LocalizedHTMLValue;
+}
+
+export interface LocalizedValue {
+  /** @maxLength 300 */
+  en?: string | null;
+  /** @maxLength 300 */
+  ka?: string | null;
+}
+
+export interface LocalizedHTMLValue {
+  en?: string | null;
+  ka?: string | null;
 }
 
 export interface GenericErrorResponse {
   error: string;
 }
 
-export interface CreateProductDto {
-  name: string;
-  color: string;
+export interface CreateProductCategoryDto {
+  name: LocalizedValue;
+  shortDescription?: LocalizedHTMLValue;
+}
+
+export interface UpdateProductCategoryDto {
+  name?: LocalizedValue;
+  shortDescription?: LocalizedHTMLValue;
 }
 
 /** This endpoint does not need a body. Just send an empty object */
 export type EmptyBody = object;
+
+export type ProductsDto = ProductDto[];
+
+export interface ProductDto {
+  id: string;
+  name: LocalizedValue;
+  /**
+   * @min 0
+   * @exclusiveMin true
+   */
+  sortOrder: number;
+  categoryIds: string[];
+  price: number;
+  description: LocalizedHTMLValue;
+  images: string[];
+  active: boolean;
+}
+
+export interface FindProductsByIdsDto {
+  productIds: string[];
+}
+
+export interface CreateProductDto {
+  name: LocalizedValue;
+  /**
+   * @min 0
+   * @exclusiveMin true
+   */
+  sortOrder: number;
+  categoryIds: string[];
+  price: number;
+  description: LocalizedHTMLValue;
+  images: string[];
+}
+
+export interface UpdateProductDto {
+  name?: LocalizedValue;
+  /**
+   * @min 0
+   * @exclusiveMin true
+   */
+  sortOrder?: number;
+  categoryIds?: string[];
+  price?: number;
+  description?: LocalizedHTMLValue;
+  images?: string[];
+  active?: boolean;
+}
 
 import type {
   AxiosInstance,
@@ -214,17 +278,120 @@ export class HttpClient<SecurityDataType = unknown> {
 export class Api<
   SecurityDataType extends unknown,
 > extends HttpClient<SecurityDataType> {
+  productCategory = {
+    /**
+     * @description Wow
+     *
+     * @name GetProductCategories
+     * @request GET:/productCategory
+     * @response `200` `ProductCategoriesDto` Response
+     * @response `400` `GenericErrorResponse` Invalid input
+     * @response `500` `GenericErrorResponse` Server error
+     */
+    getProductCategories: (params: RequestParams = {}) =>
+      this.request<ProductCategoriesDto, GenericErrorResponse>({
+        path: `/productCategory`,
+        method: "GET",
+        format: "json",
+        ...params,
+      }),
+
+    /**
+     * @description Wow
+     *
+     * @name PostProductCategory
+     * @request POST:/productCategory
+     * @response `200` `ProductCategoryDto` Response
+     * @response `400` `GenericErrorResponse` Invalid input
+     * @response `500` `GenericErrorResponse` Server error
+     */
+    postProductCategory: (
+      data: CreateProductCategoryDto,
+      params: RequestParams = {},
+    ) =>
+      this.request<ProductCategoryDto, GenericErrorResponse>({
+        path: `/productCategory`,
+        method: "POST",
+        body: data,
+        type: ContentType.Json,
+        format: "json",
+        ...params,
+      }),
+
+    /**
+     * @description Wow
+     *
+     * @name GetProductCategoryById
+     * @request GET:/productCategory/{id}
+     * @response `200` `ProductCategoryDto` Response
+     * @response `400` `GenericErrorResponse` Invalid input
+     * @response `500` `GenericErrorResponse` Server error
+     */
+    getProductCategoryById: (id?: string | null, params: RequestParams = {}) =>
+      this.request<ProductCategoryDto, GenericErrorResponse>({
+        path: `/productCategory/${id}`,
+        method: "GET",
+        format: "json",
+        ...params,
+      }),
+
+    /**
+     * @description Wow
+     *
+     * @name PatchProductCategoryById
+     * @request PATCH:/productCategory/{id}
+     * @response `200` `ProductCategoryDto` Response
+     * @response `400` `GenericErrorResponse` Invalid input
+     * @response `500` `GenericErrorResponse` Server error
+     */
+    patchProductCategoryById: (
+      data: UpdateProductCategoryDto,
+      id?: string | null,
+      params: RequestParams = {},
+    ) =>
+      this.request<ProductCategoryDto, GenericErrorResponse>({
+        path: `/productCategory/${id}`,
+        method: "PATCH",
+        body: data,
+        type: ContentType.Json,
+        format: "json",
+        ...params,
+      }),
+
+    /**
+     * @description Wow
+     *
+     * @name DeleteProductCategoryById
+     * @request DELETE:/productCategory/{id}
+     * @response `200` `ProductCategoryDto` Response
+     * @response `400` `GenericErrorResponse` Invalid input
+     * @response `500` `GenericErrorResponse` Server error
+     */
+    deleteProductCategoryById: (
+      data: EmptyBody,
+      id?: string | null,
+      params: RequestParams = {},
+    ) =>
+      this.request<ProductCategoryDto, GenericErrorResponse>({
+        path: `/productCategory/${id}`,
+        method: "DELETE",
+        body: data,
+        type: ContentType.Json,
+        format: "json",
+        ...params,
+      }),
+  };
   product = {
     /**
      * @description Wow
      *
-     * @name GetProduct
+     * @name GetProducts
      * @request GET:/product
      * @response `200` `ProductsDto` Response
      * @response `400` `GenericErrorResponse` Invalid input
      * @response `500` `GenericErrorResponse` Server error
      */
-    getProduct: (params: RequestParams = {}) =>
+    getProducts: (params: RequestParams = {}) =>
       this.request<ProductsDto, GenericErrorResponse>({
         path: `/product`,
         method: "GET",
@@ -271,6 +438,29 @@ export class Api<
     /**
      * @description Wow
      *
+     * @name PatchProductById
+     * @request PATCH:/product/{id}
+     * @response `200` `ProductDto` Response
+     * @response `400` `GenericErrorResponse` Invalid input
+     * @response `500` `GenericErrorResponse` Server error
+     */
+    patchProductById: (
+      data: UpdateProductDto,
+      id?: string | null,
+      params: RequestParams = {},
+    ) =>
+      this.request<ProductDto, GenericErrorResponse>({
+        path: `/product/${id}`,
+        method: "PATCH",
+        body: data,
+        type: ContentType.Json,
+        format: "json",
+        ...params,
+      }),
+
+    /**
+     * @description Wow
+     *
      * @name DeleteProductById
      * @request DELETE:/product/{id}
      * @response `200` `ProductDto` Response
@@ -285,6 +475,28 @@ export class Api<
       this.request<ProductDto, GenericErrorResponse>({
         path: `/product/${id}`,
         method: "DELETE",
+        body: data,
+        type: ContentType.Json,
+        format: "json",
+        ...params,
+      }),
+
+    /**
+     * @description Wow
+     *
+     * @name FindProductsByIds
+     * @request POST:/product/findByIds
+     * @response `200` `ProductsDto` Response
+     * @response `400` `GenericErrorResponse` Invalid input
+     * @response `500` `GenericErrorResponse` Server error
+     */
+    findProductsByIds: (
+      data: FindProductsByIdsDto,
+      params: RequestParams = {},
+    ) =>
+      this.request<ProductsDto, GenericErrorResponse>({
+        path: `/product/findByIds`,
+        method: "POST",
         body: data,
         type: ContentType.Json,
         format: "json",
