@@ -7,5 +7,12 @@
     "searchPlaceholder": "Search products...",
     "empty": "No products found.",
     "addToCart": "Add to Cart"
+  },
+  "Cart": {
+    "cart": "Cart",
+    "quantity": "Quantity",
+    "total": "Total",
+    "empty": "Your cart is empty.",
+    "buyNow": "Buy Now"
   }
 }

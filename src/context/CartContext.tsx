@@ -31,23 +31,31 @@ const CartContext = createContext<CartContextType | undefined>(undefined);
 
 export function CartProvider({ children }: { children: React.ReactNode }) {
   const [cartItems, setCartItems] = useState<CartItem[]>([]);
+  const [isHydrated, setIsHydrated] = useState(false);
 
   useEffect(() => {
-    const stored = window.localStorage.getItem(STORAGE_KEY);
+    try {
+      const stored = window.localStorage.getItem(STORAGE_KEY);
 
-    if (stored) {
-      try {
-        const parsed = JSON.parse(stored) as CartItem[];
-        setCartItems(parsed);
-      } catch {
-        setCartItems([]);
+      if (stored) {
+        setCartItems(JSON.parse(stored));
       }
+    } catch (error) {
+      console.error("Failed to read cart from localStorage", error);
+    } finally {
+      setIsHydrated(true);
     }
   }, []);
 
   useEffect(() => {
-    window.localStorage.setItem(STORAGE_KEY, JSON.stringify(cartItems));
-  }, [cartItems]);
+    if (!isHydrated) return;
+
+    try {
+      window.localStorage.setItem(STORAGE_KEY, JSON.stringify(cartItems));
+    } catch (error) {
+      console.error("Failed to save cart to localStorage", error);
+    }
+  }, [cartItems, isHydrated]);
 
   const addToCart = (productId: string) => {
     setCartItems((prev) => {
@@ -93,7 +101,11 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
 
   const clearCart = () => {
     setCartItems([]);
-    window.localStorage.removeItem(STORAGE_KEY);
+    try {
+      window.localStorage.removeItem(STORAGE_KEY);
+    } catch (error) {
+      console.error("Failed to clear cart from localStorage", error);
+    }
   };
 
   const getQuantity = (productId: string) => {

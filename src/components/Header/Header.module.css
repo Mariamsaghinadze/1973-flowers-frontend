@@ -1,19 +1,17 @@
 .Header {
   width: 100%;
-  z-index: 9;
+  z-index: 999;
   background-color: var(--creamy);
   top: 0;
-  display: flex;
-  width: 100%;
   height: 80px;
   padding: 0 32px;
-  align-items: flex-start;
-  border-bottom: 1px solid rgba(90, 106, 46, 0.1);
-  backdrop-filter: blur(2px);
   display: flex;
   justify-content: space-between;
   align-items: center;
   align-self: stretch;
+  position: sticky;
+  border-bottom: 1px solid rgba(90, 106, 46, 0.1);
+  backdrop-filter: blur(2px);
 }
 
 .LeftContainer {
@@ -85,6 +83,10 @@
 @media (max-width: 768px) {
   .Header {
     height: 56px;
+    padding: 0 16px;
+    position: sticky;
+    top: 0;
+    z-index: 999;
   }
 
   .Nav {
