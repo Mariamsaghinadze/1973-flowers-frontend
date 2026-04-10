@@ -1,7 +1,5 @@
 import {
-  CreateProductCategoryDto,
   FindProductsByIdsDto,
-  ProductCategoryDto,
   ProductDto,
 } from "@/lib/apiClient/generated/client";
 import { apiClient } from "@/lib/apiClient/server";

@@ -1,8 +1,8 @@
 "use client";
 
-import { Button } from "../ui/button";
 import flagGeorgia from "../../../public/assets/flag_georgia.svg";
 import flagUS from "../../../public/assets/flag_us.svg";
+import { Button } from "../ui/button";
 
 import { Link, usePathname } from "@/i18n/navigation";
 import { useLocale } from "next-intl";
@@ -12,7 +12,6 @@ import {
   DropdownMenuRadioGroup,
   DropdownMenuRadioItem,
   DropdownMenuSeparator,
-  Separator,
 } from "@radix-ui/react-dropdown-menu";
 import Image from "next/image";
 
@@ -23,8 +22,8 @@ import {
 } from "../ui/dropdown-menu";
 import styles from "./LanguageSelector.module.css";
 
-import language from "../../../public/assets/language.svg";
 import clsx from "clsx";
+import language from "../../../public/assets/language.svg";
 
 export default function LanguageSelector() {
   const locale = useLocale();

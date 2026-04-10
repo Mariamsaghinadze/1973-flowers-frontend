@@ -130,7 +130,7 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
       getQuantity,
       isInCart,
     }),
-    [cartItems],
+    [cartItems, getQuantity, isInCart],
   );
 
   return <CartContext.Provider value={value}>{children}</CartContext.Provider>;
